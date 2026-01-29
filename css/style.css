@@ -8,8 +8,13 @@
 --glass-border: rgba(255, 255, 255, 0.2);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
+padding-top: calc(110px + env(safe-area-inset-top));
 font-family: 'Inter', sans-serif;
 background: linear-gradient(-45deg, #5c5edb, #7a4fde, #1a1274, #f59e0b);
 background-size: 400% 400%;
@@ -26,17 +31,32 @@ min-height: 100vh;
 }
 
 header {
-padding: 0;
-margin: 0;
-backdrop-filter: blur(10px);
-background: var(--glass);
-border-bottom: 1px solid var(--glass-border);
-position: fixed;
-top: 0;
-left: 0;
-right: 0;
-z-index: 1000;
-height: 110px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+
+  /* Base nav height + top safe inset */
+  height: calc(110px + env(safe-area-inset-top));
+
+  /* Add notch safe area padding */
+  padding:
+    env(safe-area-inset-top)        /* pushes nav content below notch */
+    env(safe-area-inset-right)      /* helps with rounded edges */
+    0
+    env(safe-area-inset-left);
+
+  /* Visual styling */
+  backdrop-filter: blur(10px);      /* glass effect */
+  -webkit-backdrop-filter: blur(10px); /* iOS Safari prefix */
+  background: var(--glass);         /* your glass color var */
+  border-bottom: 1px solid var(--glass-border);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;  /* good default nav layout */
+box-shadow: 0 2px 8px rgba(142, 37, 253, 0.5);
 }
 
 header.scrolled {
