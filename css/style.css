@@ -12,7 +12,7 @@ html {
   scroll-behavior: smooth;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {box-sizing: border-box; }
 body {
 padding-top: calc(110px + env(safe-area-inset-top));
 font-family: 'Inter', sans-serif;
