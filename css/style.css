@@ -36,13 +36,14 @@ header {
   left: 0;
   right: 0;
   z-index: 1000;
+  inset: 0 0 auto 0;
 
   background: var(--header-bg, #1b237e); /* blue/purple */
   border-bottom: 1px solid var(--glass-border);
 
   /* make header tall enough for safety + nav */
   min-height: calc(110px + env(safe-area-inset-top));
-  
+
   /* push *content* down */
   padding-top: env(safe-area-inset-top);
   padding-right: env(safe-area-inset-right);
