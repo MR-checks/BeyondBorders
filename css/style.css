@@ -14,7 +14,7 @@ html {
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-padding-top: 110px;
+
 font-family: 'Inter', sans-serif;
 background: linear-gradient(-45deg, #5c5edb, #7a4fde, #1a1274, #f59e0b);
 background-size: 400% 400%;
