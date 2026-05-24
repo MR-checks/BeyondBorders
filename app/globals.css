@@ -1,0 +1,61 @@
+@import "tailwindcss";
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-bg: rgb(var(--bg) / <alpha-value>);
+  --color-surface: rgb(var(--surface) / <alpha-value>);
+  --color-glass: rgb(var(--glass) / <alpha-value>);
+  --color-glass-border: rgb(var(--glass-border) / <alpha-value>);
+  --color-ink: rgb(var(--ink) / <alpha-value>);
+  --color-ink-dim: rgb(var(--ink-dim) / <alpha-value>);
+  --color-accent: rgb(var(--accent) / <alpha-value>);
+  --color-accent-strong: rgb(var(--accent-strong) / <alpha-value>);
+  --color-cta: rgb(var(--cta) / <alpha-value>);
+  --color-cta-hover: rgb(var(--cta-hover) / <alpha-value>);
+  --color-wa: rgb(var(--wa) / <alpha-value>);
+}
+
+@layer base {
+  :root {
+    --bg: 245 237 218;
+    --surface: 253 246 234;
+    --glass: 253 246 234;
+    --glass-border: 44 21 6;
+    --ink: 44 21 6;
+    --ink-dim: 44 21 6;
+    --accent: 200 135 42;
+    --accent-strong: 160 100 26;
+    --cta: 200 88 40;
+    --cta-hover: 177 74 32;
+    --wa: 37 211 102;
+  }
+  .dark {
+    --bg: 24 10 2;
+    --surface: 46 20 8;
+    --glass: 46 20 8;
+    --glass-border: 200 135 42;
+    --ink: 245 237 218;
+    --ink-dim: 245 237 218;
+    --accent: 200 135 42;
+    --accent-strong: 224 155 48;
+    --cta: 200 88 40;
+    --cta-hover: 224 104 47;
+  }
+
+  body {
+    @apply bg-bg text-ink;
+    background-image: radial-gradient(circle at top center, rgba(255,255,255,0.05), transparent 70%);
+  }
+}
+
+.glass {
+  background-color: rgb(var(--glass) / 0.7);
+  backdrop-filter: blur(12px) saturate(110%);
+  border: 1px solid rgb(var(--glass-border) / 0.1);
+  box-shadow: inset 1px 1px 0 0 rgb(255 255 255 / 0.1), inset -1px -1px 0 0 rgb(0 0 0 / 0.05), 0 4px 12px rgba(0,0,0,0.05);
+}
+@supports not (backdrop-filter: blur(12px)) {
+  .glass {
+    background-color: rgb(var(--surface) / 0.95);
+  }
+}
