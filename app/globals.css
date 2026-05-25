@@ -54,17 +54,42 @@
     100% { background-position: 0% 50%; }
   }
 
+  @keyframes orb-drift-1 {
+    0% { transform: translate(-20vw, -20vh) scale(1); }
+    33% { transform: translate(10vw, 5vh) scale(1.1); }
+    66% { transform: translate(-10vw, 20vh) scale(0.9); }
+    100% { transform: translate(-20vw, -20vh) scale(1); }
+  }
+
+  @keyframes orb-drift-2 {
+    0% { transform: translate(30vw, 10vh) scale(1); }
+    33% { transform: translate(-10vw, -15vh) scale(0.9); }
+    66% { transform: translate(20vw, 20vh) scale(1.1); }
+    100% { transform: translate(30vw, 10vh) scale(1); }
+  }
+
+  @keyframes orb-drift-3 {
+    0% { transform: translate(0vw, 30vh) scale(1); }
+    33% { transform: translate(20vw, -10vh) scale(1.1); }
+    66% { transform: translate(-20vw, 10vh) scale(0.9); }
+    100% { transform: translate(0vw, 30vh) scale(1); }
+  }
+
   body {
     @apply text-ink;
     background: radial-gradient(ellipse 150% 150% at 50% 0%, var(--bg-center) 0%, var(--bg-mid) 45%, var(--bg-edge) 100%);
     background-attachment: fixed;
     background-size: 200% 200%;
-    animation: diffuse 40s ease-in-out infinite;
+    animation: diffuse 35s ease-in-out infinite alternate;
   }
 
+  .animate-orb-1 { animation: orb-drift-1 25s infinite ease-in-out; }
+  .animate-orb-2 { animation: orb-drift-2 30s infinite ease-in-out; }
+  .animate-orb-3 { animation: orb-drift-3 28s infinite ease-in-out; }
+
   @media (prefers-reduced-motion: reduce) {
-    body {
-      animation: none;
+    body, .animate-orb-1, .animate-orb-2, .animate-orb-3 {
+      animation: none !important;
     }
   }
 }

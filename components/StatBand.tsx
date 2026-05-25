@@ -1,17 +1,40 @@
 "use client";
-import { siteConfig } from "@/lib/siteConfig";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion, useInView, useReducedMotion, animate } from "framer-motion";
+import { useEffect, useRef } from "react";
+
+function Counter({ from, to, duration, prefix = "", suffix = "" }: { from: number, to: number, duration: number, prefix?: string, suffix?: string }) {
+  const nodeRef = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
+  
+  useEffect(() => {
+    if (shouldReduceMotion) {
+      if (nodeRef.current) nodeRef.current.textContent = `${prefix}${Math.round(to).toLocaleString()}${suffix}`;
+      return;
+    }
+    const controls = animate(from, to, {
+      duration,
+      ease: "easeOut",
+      onUpdate(value) {
+        if (nodeRef.current) {
+          nodeRef.current.textContent = `${prefix}${Math.round(value).toLocaleString()}${suffix}`;
+        }
+      }
+    });
+    return () => controls.stop();
+  }, [from, to, duration, prefix, suffix, shouldReduceMotion]);
+
+  return <div ref={nodeRef} className="text-4xl md:text-5xl font-serif font-bold text-accent mb-2 tracking-tight">{prefix}{Math.round(from).toLocaleString()}{suffix}</div>;
+}
 
 export default function StatBand() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   const stats = [
-    { label: "Applicants placed", value: siteConfig.stats.applicants },
-    { label: "Visa success rate", value: siteConfig.stats.successRate },
-    { label: "Since", value: siteConfig.stats.founded },
-    { label: "Core services", value: siteConfig.stats.services },
+    { label: "Applicants placed", value: 6000, suffix: "+", duration: 1.2, from: 0 },
+    { label: "Visa success rate", value: 100, suffix: "%", duration: 1.2, from: 0 },
+    { label: "Since", value: 2019, from: new Date().getFullYear(), duration: 1.2 },
+    { label: "Core services", value: 6, duration: 1.0, from: 0 },
   ];
 
   return (
@@ -25,9 +48,7 @@ export default function StatBand() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: i * 0.1, duration: 0.6 }}
           >
-            <div className="text-3xl md:text-5xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent to-cta mb-2">
-              {stat.value}
-            </div>
+            {isInView ? <Counter from={stat.from} to={stat.value} duration={stat.duration} suffix={stat.suffix} /> : <div className="text-4xl md:text-5xl font-serif font-bold text-accent mb-2 tracking-tight">&nbsp;</div>}
             <div className="text-sm font-bold tracking-widest uppercase text-ink-dim">
               {stat.label}
             </div>
