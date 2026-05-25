@@ -23,7 +23,7 @@ export default function Nav() {
       animate={{ y: 0 }}
     >
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <Link href="/" className="font-serif text-2xl font-bold tracking-tight hover:opacity-80 transition-opacity">
+        <Link href="/" onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})} className="font-serif text-2xl font-bold tracking-tight hover:opacity-80 transition-opacity cursor-pointer">
           Beyond<span className="text-logo-gold">Borders</span>
         </Link>
         <div className="flex items-center gap-4">

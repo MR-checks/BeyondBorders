@@ -23,7 +23,7 @@ export default function Process() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
             >
-              <div className="flex-shrink-0 w-14 h-14 bg-[#AC9350] text-white rounded-full flex items-center justify-center font-serif font-bold text-2xl shadow-[0_4px_12px_rgba(172,147,80,0.3)]">
+              <div className="flex-shrink-0 w-14 h-14 bg-[#2C1506] text-[#F5EDDA] dark:bg-[#3E1E09] dark:text-[#C8872A] border border-transparent dark:border-[rgba(200,135,42,0.4)] rounded-full flex items-center justify-center font-serif font-bold text-2xl shadow-md">
                 {step.id}
               </div>
               <div className="flex-grow">
