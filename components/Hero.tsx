@@ -33,8 +33,8 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <Link href="#contact" className="relative overflow-hidden bg-cta bg-gradient-to-tr from-cta to-accent-strong text-white px-8 py-4 rounded-xl font-medium transition-all hover:-translate-y-1 hover:shadow-[0_12px_40px_rgb(var(--cta)/0.4)]">
-            <span className="relative z-10">Get Free Consultation</span>
+          <Link href="#contact" className="bg-cta text-white hover:bg-cta-hover px-8 py-4 rounded-xl font-medium transition-all hover:-translate-y-1 hover:shadow-[0_8px_24px_rgb(var(--cta)/0.35)] dark:bg-cta dark:text-white">
+            Get Free Consultation
           </Link>
           <Link href="#services" className="glass px-8 py-4 rounded-xl font-medium transition-all hover:-translate-y-1 hover:shadow-[0_12px_40px_rgb(var(--accent)/0.2)]">
             Explore Services

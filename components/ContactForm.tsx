@@ -9,8 +9,21 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("submitting");
-    // Simulate submission for now
-    setTimeout(() => setStatus("success"), 1000);
+    
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      });
+      if (res.ok) {
+        setStatus("success");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
   };
 
   const openWhatsApp = () => {
@@ -42,10 +55,11 @@ export default function ContactForm() {
       <textarea placeholder="Message" required rows={4} className="w-full p-4 rounded-xl bg-surface border border-glass-border/10 focus:outline-none focus:ring-2 focus:ring-accent" onChange={e => setFormData({...formData, message: e.target.value})}></textarea>
       
       <div className="flex flex-col gap-3 pt-2">
-        <button type="submit" disabled={status === "submitting"} className="relative overflow-hidden bg-cta bg-gradient-to-tr from-cta to-accent-strong text-white py-4 rounded-xl font-bold transition-all hover:-translate-y-1 hover:shadow-[0_12px_40px_rgb(var(--cta)/0.4)]">
-          <span className="relative z-10">Send Message</span>
+        {status === "error" && <p className="text-red-500 text-sm">Failed to send message. Please try WhatsApp instead.</p>}
+        <button type="submit" disabled={status === "submitting"} className="bg-cta text-white hover:bg-cta-hover py-4 rounded-xl font-bold transition-all hover:-translate-y-1 hover:shadow-[0_8px_24px_rgb(var(--cta)/0.35)] dark:bg-cta dark:text-white">
+          Send Message
         </button>
-        <button type="button" onClick={openWhatsApp} className="bg-[#25D366] hover:bg-[#20b858] text-white py-4 rounded-xl font-bold transition-colors">
+        <button type="button" onClick={openWhatsApp} className="bg-[#1DAA54] hover:bg-[#188D45] text-white py-4 rounded-xl font-bold transition-colors">
           Send via WhatsApp instead
         </button>
       </div>

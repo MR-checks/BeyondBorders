@@ -60,14 +60,15 @@ export default function WhatsAppButton() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with BeyondBorders on WhatsApp"
-        className="flex items-center justify-center bg-[#25D366] text-white p-4 rounded-full shadow-[0_4px_20px_rgba(37,211,102,0.4)] hover:shadow-[0_8px_30px_rgba(37,211,102,0.6)] focus:ring-4 focus:ring-accent transition-shadow group"
+        className="flex items-center justify-center gap-2 bg-[#1DAA54] text-white px-4 py-3 md:px-5 md:py-3 rounded-full shadow-[0_4px_20px_rgba(29,170,84,0.4)] hover:shadow-[0_8px_30px_rgba(29,170,84,0.6)] focus:ring-4 focus:ring-accent transition-shadow group"
         animate={continuousAnim}
         whileHover={shouldReduceMotion ? {} : { scale: 1.15, transition: { duration: 0.2 } }}
         whileTap={{ scale: 0.9 }}
       >
-        <MessageCircle size={32} />
+        <MessageCircle size={28} />
+        <span className="hidden md:inline-block font-sans font-semibold text-[14px] text-white">Contact us</span>
         {/* Tooltip */}
-        <span className="absolute right-full mr-4 top-1/2 -translate-y-1/2 glass px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none delay-100">
+        <span className="absolute right-full mr-4 top-1/2 -translate-y-1/2 glass px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none md:hidden delay-100">
           Chat with us
         </span>
       </motion.a>
