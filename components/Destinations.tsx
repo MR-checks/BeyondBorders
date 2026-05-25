@@ -8,7 +8,8 @@ const DEST_IMAGES: Record<string, string> = {
   'canada': 'https://images.unsplash.com/photo-1517935706615-2717063c2225?q=80&w=1530&auto=format&fit=crop&ixlib=rb-4.1.0',
   'uk': 'https://images.unsplash.com/photo-1488747279002-c8523379faaa?w=1600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0',
   'australia': 'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?q=80&w=1530&auto=format&fit=crop&ixlib=rb-4.1.0',
-  'turkey': 'https://images.unsplash.com/photo-1528728329032-2972f65dfb3f?w=1600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0'
+  'turkey': 'https://plus.unsplash.com/premium_photo-1661955588369-b0d28de38b45?w=1600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0',
+  'germany': 'https://images.unsplash.com/photo-1528728329032-2972f65dfb3f?w=1600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0'
 };
 
 export default function Destinations() {
@@ -41,7 +42,7 @@ export default function Destinations() {
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
               <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to bottom, transparent 30%, rgba(20, 8, 2, 0.65) 100%)' }} />
-              <div className="absolute inset-x-0 bottom-0 bg-[rgba(44,21,6,0.55)] backdrop-blur-md p-6 border-t border-[rgba(200,135,42,0.35)] rounded-b-2xl">
+              <div className="absolute inset-x-0 bottom-0 bg-[rgba(20,8,2,0.45)] backdrop-blur-md p-6 border-t border-[rgba(200,135,42,0.35)] rounded-b-2xl">
                 <h3 className="text-xl font-bold text-[#F5EDDA] drop-shadow-md">{dest.name}</h3>
                 <p className="text-sm text-[#F5EDDA]/90 drop-shadow-sm">{dest.description}</p>
               </div>

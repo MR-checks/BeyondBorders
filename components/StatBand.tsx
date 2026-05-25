@@ -2,13 +2,13 @@
 import { motion, useInView, useReducedMotion, animate } from "framer-motion";
 import { useEffect, useRef } from "react";
 
-function Counter({ from, to, duration, prefix = "", suffix = "" }: { from: number, to: number, duration: number, prefix?: string, suffix?: string }) {
+function Counter({ from, to, duration, prefix = "", suffix = "", format = true }: { from: number, to: number, duration: number, prefix?: string, suffix?: string, format?: boolean }) {
   const nodeRef = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
   
   useEffect(() => {
     if (shouldReduceMotion) {
-      if (nodeRef.current) nodeRef.current.textContent = `${prefix}${Math.round(to).toLocaleString()}${suffix}`;
+      if (nodeRef.current) nodeRef.current.textContent = `${prefix}${format ? Math.round(to).toLocaleString() : Math.round(to)}${suffix}`;
       return;
     }
     const controls = animate(from, to, {
@@ -16,14 +16,14 @@ function Counter({ from, to, duration, prefix = "", suffix = "" }: { from: numbe
       ease: "easeOut",
       onUpdate(value) {
         if (nodeRef.current) {
-          nodeRef.current.textContent = `${prefix}${Math.round(value).toLocaleString()}${suffix}`;
+          nodeRef.current.textContent = `${prefix}${format ? Math.round(value).toLocaleString() : Math.round(value)}${suffix}`;
         }
       }
     });
     return () => controls.stop();
-  }, [from, to, duration, prefix, suffix, shouldReduceMotion]);
+  }, [from, to, duration, prefix, suffix, format, shouldReduceMotion]);
 
-  return <div ref={nodeRef} className="text-4xl md:text-5xl font-serif font-bold text-accent mb-2 tracking-tight">{prefix}{Math.round(from).toLocaleString()}{suffix}</div>;
+  return <div ref={nodeRef} className="text-4xl md:text-5xl font-serif font-bold text-accent mb-2 tracking-tight">{prefix}{format ? Math.round(from).toLocaleString() : Math.round(from)}{suffix}</div>;
 }
 
 export default function StatBand() {
@@ -33,7 +33,7 @@ export default function StatBand() {
   const stats = [
     { label: "Applicants placed", value: 6000, suffix: "+", duration: 1.2, from: 0 },
     { label: "Visa success rate", value: 100, suffix: "%", duration: 1.2, from: 0 },
-    { label: "Since", value: 2019, from: new Date().getFullYear(), duration: 1.2 },
+    { label: "Since", value: 2019, from: new Date().getFullYear(), duration: 1.2, format: false },
     { label: "Core services", value: 6, duration: 1.0, from: 0 },
   ];
 
@@ -48,7 +48,7 @@ export default function StatBand() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: i * 0.1, duration: 0.6 }}
           >
-            {isInView ? <Counter from={stat.from} to={stat.value} duration={stat.duration} suffix={stat.suffix} /> : <div className="text-4xl md:text-5xl font-serif font-bold text-accent mb-2 tracking-tight">&nbsp;</div>}
+            {isInView ? <Counter from={stat.from} to={stat.value} duration={stat.duration} suffix={stat.suffix} format={stat.format} /> : <div className="text-4xl md:text-5xl font-serif font-bold text-accent mb-2 tracking-tight">&nbsp;</div>}
             <div className="text-sm font-bold tracking-widest uppercase text-ink-dim">
               {stat.label}
             </div>
