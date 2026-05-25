@@ -56,7 +56,7 @@ export default function ContactForm() {
       
       <div className="flex flex-col gap-3 pt-2">
         {status === "error" && <p className="text-red-500 text-sm">Failed to send message. Please try WhatsApp instead.</p>}
-        <button type="submit" disabled={status === "submitting"} className="bg-ink text-surface hover:bg-[#1A0B03] dark:hover:bg-cta-hover py-4 rounded-xl font-bold transition-all hover:-translate-y-1 hover:shadow-[0_8px_24px_rgb(var(--ink)/0.35)] dark:bg-cta dark:text-white dark:hover:shadow-[0_8px_24px_rgb(var(--cta)/0.35)]">
+        <button type="submit" disabled={status === "submitting"} className="bg-cta text-white hover:bg-cta-hover py-4 rounded-xl font-bold transition-all hover:-translate-y-1 hover:shadow-[0_8px_24px_rgb(var(--cta)/0.35)]">
           Send Message
         </button>
         <button type="button" onClick={openWhatsApp} className="bg-[#158740] hover:bg-[#0F612D] text-white py-4 rounded-xl font-bold transition-colors">
