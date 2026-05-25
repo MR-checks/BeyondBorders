@@ -48,8 +48,8 @@ export default async function RootLayout({
           <Footer />
           <WhatsAppButton />
         </ThemeProvider>
-        <Analytics nonce={nonce} />
-        <SpeedInsights nonce={nonce} />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
