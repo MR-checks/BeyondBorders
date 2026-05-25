@@ -2,11 +2,13 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
-import { motion, useScroll } from "framer-motion";
+import { motion, useScroll, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
 
 export default function Nav() {
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     return scrollY.on("change", (latest) => {
@@ -24,16 +26,41 @@ export default function Nav() {
         <Link href="/" className="font-serif text-2xl font-bold tracking-tight">
           Beyond<span className="text-accent">Borders</span>
         </Link>
-        <nav className="hidden md:flex gap-8 items-center text-sm font-medium">
-          <Link href="/#services" className="hover:text-accent transition-colors">Services</Link>
-          <Link href="/#destinations" className="hover:text-accent transition-colors">Destinations</Link>
-          <Link href="/#process" className="hover:text-accent transition-colors">How It Works</Link>
-          <Link href="/#testimonials" className="hover:text-accent transition-colors">Success Stories</Link>
-          <Link href="/#faq" className="hover:text-accent transition-colors">FAQ</Link>
-          <Link href="/#contact" className="hover:text-accent transition-colors">Contact</Link>
+        <div className="flex items-center gap-4">
+          <nav className="hidden md:flex gap-8 items-center text-sm font-medium">
+            <Link href="/#services" className="hover:text-accent transition-colors">Services</Link>
+            <Link href="/#destinations" className="hover:text-accent transition-colors">Destinations</Link>
+            <Link href="/#process" className="hover:text-accent transition-colors">How It Works</Link>
+            <Link href="/#testimonials" className="hover:text-accent transition-colors">Success Stories</Link>
+            <Link href="/#faq" className="hover:text-accent transition-colors">FAQ</Link>
+            <Link href="/#contact" className="hover:text-accent transition-colors">Contact</Link>
+          </nav>
           <ThemeToggle />
-        </nav>
+          <button className="md:hidden p-2 -mr-2 text-ink dark:text-surface" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle Menu">
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden overflow-hidden bg-surface dark:bg-bg/95 backdrop-blur-xl shadow-lg border-t border-glass-border/10"
+          >
+            <div className="flex flex-col py-6 px-6 gap-6 font-medium text-lg">
+              <Link href="/#services" onClick={() => setIsOpen(false)}>Services</Link>
+              <Link href="/#destinations" onClick={() => setIsOpen(false)}>Destinations</Link>
+              <Link href="/#process" onClick={() => setIsOpen(false)}>How It Works</Link>
+              <Link href="/#testimonials" onClick={() => setIsOpen(false)}>Success Stories</Link>
+              <Link href="/#faq" onClick={() => setIsOpen(false)}>FAQ</Link>
+              <Link href="/#contact" onClick={() => setIsOpen(false)}>Contact</Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 }
