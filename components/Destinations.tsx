@@ -41,8 +41,8 @@ export default function Destinations() {
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
-              <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to bottom, transparent 30%, rgba(20, 8, 2, 0.65) 100%)' }} />
-              <div className="absolute inset-x-0 bottom-0 bg-[rgba(20,8,2,0.45)] backdrop-blur-md p-6 border-t border-[rgba(200,135,42,0.35)] rounded-b-2xl">
+              <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to bottom, transparent 40%, rgba(20, 8, 2, 0.40) 100%)' }} />
+              <div className="absolute inset-x-0 bottom-0 bg-[rgba(20,8,2,0.20)] backdrop-blur-sm p-6 border-t border-[rgba(200,135,42,0.30)] rounded-b-2xl">
                 <h3 className="text-xl font-bold text-[#F5EDDA] drop-shadow-md">{dest.name}</h3>
                 <p className="text-sm text-[#F5EDDA]/90 drop-shadow-sm">{dest.description}</p>
               </div>
