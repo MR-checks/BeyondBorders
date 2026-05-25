@@ -60,7 +60,7 @@ export default function Nav() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden absolute top-20 left-0 w-full overflow-hidden bg-surface dark:bg-bg/95 backdrop-blur-xl shadow-lg border-t border-glass-border/10 z-50"
+            className="md:hidden absolute top-20 left-0 w-full overflow-hidden bg-[#F5EDDA]/[0.97] dark:bg-[#2E1408]/[0.97] shadow-lg border-t border-glass-border/10 z-50"
           >
             <div className="flex flex-col py-6 px-6 gap-6 font-medium text-lg">
               <Link href="/#services" onClick={() => setIsOpen(false)}>Services</Link>
