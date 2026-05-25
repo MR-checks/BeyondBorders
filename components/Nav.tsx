@@ -44,11 +44,23 @@ export default function Nav() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            key="backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden fixed top-20 left-0 w-full h-[calc(100vh-5rem)] bg-black/40 z-40"
+            onClick={() => setIsOpen(false)}
+          />
+        )}
+        {isOpen && (
+          <motion.div
+            key="menu"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden overflow-hidden bg-surface dark:bg-bg/95 backdrop-blur-xl shadow-lg border-t border-glass-border/10"
+            className="md:hidden absolute top-20 left-0 w-full overflow-hidden bg-surface dark:bg-bg/95 backdrop-blur-xl shadow-lg border-t border-glass-border/10 z-50"
           >
             <div className="flex flex-col py-6 px-6 gap-6 font-medium text-lg">
               <Link href="/#services" onClick={() => setIsOpen(false)}>Services</Link>

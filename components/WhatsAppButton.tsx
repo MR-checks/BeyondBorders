@@ -60,7 +60,7 @@ export default function WhatsAppButton() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with BeyondBorders on WhatsApp"
-        className="flex items-center justify-center bg-[#158740] text-white p-4 md:px-5 md:py-3 md:gap-2 rounded-full shadow-[0_4px_20px_rgba(21,135,64,0.4)] hover:shadow-[0_8px_30px_rgba(21,135,64,0.6)] focus:ring-4 focus:ring-accent transition-shadow group"
+        className="flex items-center justify-center bg-[#158740] text-white w-14 h-14 p-0 md:w-auto md:h-auto md:px-5 md:py-3 md:gap-2 rounded-full shadow-[0_4px_20px_rgba(21,135,64,0.4)] hover:shadow-[0_8px_30px_rgba(21,135,64,0.6)] focus:ring-4 focus:ring-accent transition-shadow group"
         animate={continuousAnim}
         whileHover={shouldReduceMotion ? {} : { scale: 1.15, transition: { duration: 0.2 } }}
         whileTap={{ scale: 0.9 }}

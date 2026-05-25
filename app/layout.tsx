@@ -40,6 +40,9 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning className={`${fraunces.variable} ${manrope.variable}`}>
+      <head>
+        <meta name="theme-color" content="#180A02" />
+      </head>
       <body className="antialiased font-sans min-h-screen flex flex-col relative z-0">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange nonce={nonce}>
           <Background />

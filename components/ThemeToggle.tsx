@@ -9,6 +9,20 @@ export default function ThemeToggle() {
 
   useEffect(() => setMounted(true), []);
 
+  useEffect(() => {
+    if (!mounted) return;
+    const color = theme === 'dark' ? '#180A02' : '#F5EDDA';
+    let meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) {
+      meta.setAttribute('content', color);
+    } else {
+      meta = document.createElement('meta');
+      meta.setAttribute('name', 'theme-color');
+      meta.setAttribute('content', color);
+      document.head.appendChild(meta);
+    }
+  }, [theme, mounted]);
+
   if (!mounted) return <div className="w-8 h-8" />;
 
   return (
