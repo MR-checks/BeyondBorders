@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { Fraunces, Manrope } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
@@ -29,15 +30,17 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://divebeyondborders.com"),
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const nonce = (await headers()).get('x-nonce') ?? '';
+
   return (
     <html lang="en" suppressHydrationWarning className={`${fraunces.variable} ${manrope.variable}`}>
       <body className="antialiased font-sans min-h-screen flex flex-col">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange nonce={nonce}>
           <Nav />
           <main className="flex-grow">
             {children}
@@ -45,8 +48,8 @@ export default function RootLayout({
           <Footer />
           <WhatsAppButton />
         </ThemeProvider>
-        <Analytics />
-        <SpeedInsights />
+        <Analytics nonce={nonce} />
+        <SpeedInsights nonce={nonce} />
       </body>
     </html>
   );
