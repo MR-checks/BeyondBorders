@@ -5,7 +5,7 @@ export const siteConfig = {
   contact: {
     email: "divebeyondborders@gmail.com",
     whatsappLink: "https://wa.me/message/ID4JRJV7DFKAM1",
-    whatsappE164: "1234567890", // Placeholder E.164
+    whatsappE164: "233234567890", // Placeholder E.164
     instagram: "https://instagram.com/_beyondborders46",
     tiktok: "https://tiktok.com/@dive_beyondborder",
     location: "California | USA",

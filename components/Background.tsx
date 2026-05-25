@@ -31,14 +31,7 @@ export default function Background() {
 
   return (
     <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
-      {/* Texture overlay */}
-      <div 
-        className="absolute inset-0 opacity-[0.04] dark:opacity-[0.06] mix-blend-overlay"
-        style={{
-          backgroundImage: `radial-gradient(rgb(var(--ink)) 1px, transparent 1px)`,
-          backgroundSize: '24px 24px'
-        }}
-      />
+      {/* Texture overlay removed as requested */}
 
       {/* Floating Orbs */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-[100vw] max-h-[100vh]">
@@ -49,7 +42,7 @@ export default function Background() {
         />
         <motion.div
           animate={drift2}
-          className="absolute top-[40%] left-[60%] w-[45vw] h-[45vw] rounded-full mix-blend-multiply dark:mix-blend-screen opacity-15 dark:opacity-20 filter blur-[100px]"
+          className="absolute top-[40%] left-[60%] w-[45vw] h-[45vw] rounded-full mix-blend-multiply dark:mix-blend-screen opacity-10 dark:opacity-15 filter blur-[100px]"
           style={{ backgroundColor: 'rgb(var(--cta))' }}
         />
         <motion.div

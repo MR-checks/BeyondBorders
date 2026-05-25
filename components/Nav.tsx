@@ -16,7 +16,7 @@ export default function Nav() {
 
   return (
     <motion.header
-      className={`fixed top-0 w-full z-50 transition-colors duration-300 ${isScrolled ? "glass" : "bg-transparent"}`}
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-bg/75 backdrop-blur-[18px] border-b border-accent/20" : "bg-transparent"}`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
     >

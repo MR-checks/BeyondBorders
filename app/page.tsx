@@ -28,7 +28,7 @@ export default function Home() {
           </p>
           <div className="space-y-4 text-ink-dim">
             <p><strong>Email:</strong> divebeyondborders@gmail.com</p>
-            <p><strong>WhatsApp:</strong> +1 234 567 890</p>
+            <p><strong>WhatsApp:</strong> +233 234 567 890</p>
             <p><strong>Location:</strong> <a href="#" className="text-accent hover:underline">California | USA</a></p>
           </div>
         </div>
