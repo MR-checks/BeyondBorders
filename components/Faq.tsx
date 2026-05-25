@@ -11,7 +11,10 @@ export default function Faq() {
     <section id="faq" className="py-24 px-6">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-serif mb-4">Frequently Asked Questions</h2>
+          <h2 className="text-4xl md:text-5xl font-serif mb-4 relative inline-block">
+            <span className="block text-sm font-sans text-accent tracking-widest uppercase mb-2">Got Questions?</span>
+            Frequently Asked Questions
+          </h2>
         </div>
         <div className="space-y-4">
           {faqs.map((faq, i) => (

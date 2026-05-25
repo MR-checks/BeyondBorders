@@ -5,9 +5,14 @@ export function middleware(request: NextRequest) {
   // btoa + Web Crypto only — no Buffer, no Node.js polyfill needed
   const nonce = btoa(crypto.randomUUID())
 
+  const isDev = process.env.NODE_ENV === 'development'
+  const scriptSrc = isDev
+    ? `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' 'unsafe-eval'`
+    : `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'`
+
   const csp = [
     `default-src 'self'`,
-    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'`,
+    scriptSrc,
     `style-src 'self' 'unsafe-inline'`,
     `img-src 'self' data: blob: https://images.unsplash.com https://plus.unsplash.com`,
     `font-src 'self'`,

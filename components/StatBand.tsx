@@ -15,19 +15,20 @@ export default function StatBand() {
   ];
 
   return (
-    <section className="px-6 pb-20" ref={ref}>
-      <div className="max-w-6xl mx-auto glass rounded-2xl p-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+    <section className="px-6 pb-20 relative" ref={ref}>
+      <div className="absolute inset-0 bg-gradient-to-r from-accent/10 via-cta/5 to-accent/10 max-w-6xl mx-auto rounded-3xl -z-10 blur-xl"></div>
+      <div className="max-w-6xl mx-auto glass rounded-2xl p-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-center relative z-10">
         {stats.map((stat, i) => (
           <motion.div 
             key={stat.label}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: i * 0.1, duration: 0.6 }}
           >
-            <div className="text-3xl md:text-4xl font-serif font-bold text-accent mb-2">
+            <div className="text-3xl md:text-5xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent to-cta mb-2">
               {stat.value}
             </div>
-            <div className="text-sm font-medium tracking-wider uppercase text-ink-dim">
+            <div className="text-sm font-bold tracking-widest uppercase text-ink-dim">
               {stat.label}
             </div>
           </motion.div>

@@ -42,8 +42,8 @@ export default function ContactForm() {
       <textarea placeholder="Message" required rows={4} className="w-full p-4 rounded-xl bg-surface border border-glass-border/10 focus:outline-none focus:ring-2 focus:ring-accent" onChange={e => setFormData({...formData, message: e.target.value})}></textarea>
       
       <div className="flex flex-col gap-3 pt-2">
-        <button type="submit" disabled={status === "submitting"} className="bg-cta hover:bg-cta-hover text-white py-4 rounded-xl font-bold transition-colors">
-          Send Message
+        <button type="submit" disabled={status === "submitting"} className="relative overflow-hidden bg-cta bg-gradient-to-tr from-cta to-accent-strong text-white py-4 rounded-xl font-bold transition-all hover:-translate-y-1 hover:shadow-[0_12px_40px_rgb(var(--cta)/0.4)]">
+          <span className="relative z-10">Send Message</span>
         </button>
         <button type="button" onClick={openWhatsApp} className="bg-[#25D366] hover:bg-[#20b858] text-white py-4 rounded-xl font-bold transition-colors">
           Send via WhatsApp instead

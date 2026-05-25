@@ -7,14 +7,18 @@ export default function Services() {
     <section id="services" className="py-24 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-serif mb-4">Our Services</h2>
+          <h2 className="text-4xl md:text-5xl font-serif mb-4 relative inline-block">
+            <span className="block text-sm font-sans text-accent tracking-widest uppercase mb-2">What We Offer</span>
+            Our Services
+          </h2>
           <p className="text-lg text-ink-dim max-w-2xl mx-auto">Comprehensive support for your global journey.</p>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, i) => (
             <motion.div 
               key={service.id}
-              className="glass p-8 rounded-3xl hover:-translate-y-1 transition-transform group"
+              className="glass p-8 rounded-3xl group cursor-pointer"
+              whileHover={{ y: -8, boxShadow: "0 12px 40px rgb(var(--accent) / 0.28)" }}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}

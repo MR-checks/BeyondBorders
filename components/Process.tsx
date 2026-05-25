@@ -7,13 +7,17 @@ export default function Process() {
     <section id="process" className="py-24 px-6">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-serif mb-4">How It Works</h2>
+          <h2 className="text-4xl md:text-5xl font-serif mb-4 relative inline-block">
+            <span className="block text-sm font-sans text-accent tracking-widest uppercase mb-2">Simple Steps</span>
+            How It Works
+          </h2>
         </div>
         <div className="space-y-6">
           {processSteps.map((step, i) => (
             <motion.div 
               key={step.id}
-              className="glass p-6 md:p-8 rounded-2xl flex gap-6 items-start"
+              className="glass p-6 md:p-8 rounded-2xl flex gap-6 items-start cursor-pointer"
+              whileHover={{ y: -4, boxShadow: "0 12px 40px rgb(var(--accent) / 0.28)" }}
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}

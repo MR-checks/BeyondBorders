@@ -8,6 +8,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import Background from "@/components/Background";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -39,8 +40,9 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning className={`${fraunces.variable} ${manrope.variable}`}>
-      <body className="antialiased font-sans min-h-screen flex flex-col">
+      <body className="antialiased font-sans min-h-screen flex flex-col relative z-0">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange nonce={nonce}>
+          <Background />
           <Nav />
           <main className="flex-grow">
             {children}
