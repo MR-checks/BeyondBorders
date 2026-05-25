@@ -48,10 +48,24 @@
     --cta-hover: 224 104 47;
   }
 
+  @keyframes diffuse {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
   body {
     @apply text-ink;
-    background: radial-gradient(ellipse 80% 60% at 50% 0%, var(--bg-center) 0%, var(--bg-mid) 45%, var(--bg-edge) 100%);
+    background: radial-gradient(ellipse 150% 150% at 50% 0%, var(--bg-center) 0%, var(--bg-mid) 45%, var(--bg-edge) 100%);
     background-attachment: fixed;
+    background-size: 200% 200%;
+    animation: diffuse 40s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    body {
+      animation: none;
+    }
   }
 }
 
