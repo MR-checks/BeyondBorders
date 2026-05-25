@@ -23,17 +23,17 @@ export default function Nav() {
       animate={{ y: 0 }}
     >
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <Link href="/" className="font-serif text-2xl font-bold tracking-tight">
-          Beyond<span className="text-accent">Borders</span>
+        <Link href="/" className="font-serif text-2xl font-bold tracking-tight hover:opacity-80 transition-opacity">
+          Beyond<span className="text-logo-gold">Borders</span>
         </Link>
         <div className="flex items-center gap-4">
           <nav className="hidden md:flex gap-8 items-center text-sm font-medium">
-            <Link href="/#services" className="hover:text-accent transition-colors">Services</Link>
-            <Link href="/#destinations" className="hover:text-accent transition-colors">Destinations</Link>
-            <Link href="/#process" className="hover:text-accent transition-colors">How It Works</Link>
-            <Link href="/#testimonials" className="hover:text-accent transition-colors">Success Stories</Link>
-            <Link href="/#faq" className="hover:text-accent transition-colors">FAQ</Link>
-            <Link href="/#contact" className="hover:text-accent transition-colors">Contact</Link>
+            <Link href="/#services" className="nav-link hover:text-accent transition-colors">Services</Link>
+            <Link href="/#destinations" className="nav-link hover:text-accent transition-colors">Destinations</Link>
+            <Link href="/#process" className="nav-link hover:text-accent transition-colors">How It Works</Link>
+            <Link href="/#testimonials" className="nav-link hover:text-accent transition-colors">Success Stories</Link>
+            <Link href="/#faq" className="nav-link hover:text-accent transition-colors">FAQ</Link>
+            <Link href="/#contact" className="nav-link hover:text-accent transition-colors">Contact</Link>
           </nav>
           <ThemeToggle />
           <button className="md:hidden p-2 -mr-2 text-ink dark:text-surface" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle Menu">
@@ -63,12 +63,12 @@ export default function Nav() {
             className="md:hidden absolute top-20 left-0 w-full overflow-hidden bg-[#F5EDDA]/80 dark:bg-[#2E1408]/80 backdrop-blur-md shadow-lg border-t border-glass-border/10 z-50"
           >
             <div className="flex flex-col py-6 px-6 gap-6 font-medium text-lg">
-              <Link href="/#services" onClick={() => setIsOpen(false)}>Services</Link>
-              <Link href="/#destinations" onClick={() => setIsOpen(false)}>Destinations</Link>
-              <Link href="/#process" onClick={() => setIsOpen(false)}>How It Works</Link>
-              <Link href="/#testimonials" onClick={() => setIsOpen(false)}>Success Stories</Link>
-              <Link href="/#faq" onClick={() => setIsOpen(false)}>FAQ</Link>
-              <Link href="/#contact" onClick={() => setIsOpen(false)}>Contact</Link>
+              <Link href="/#services" onClick={() => setIsOpen(false)} className="nav-link self-start">Services</Link>
+              <Link href="/#destinations" onClick={() => setIsOpen(false)} className="nav-link self-start">Destinations</Link>
+              <Link href="/#process" onClick={() => setIsOpen(false)} className="nav-link self-start">How It Works</Link>
+              <Link href="/#testimonials" onClick={() => setIsOpen(false)} className="nav-link self-start">Success Stories</Link>
+              <Link href="/#faq" onClick={() => setIsOpen(false)} className="nav-link self-start">FAQ</Link>
+              <Link href="/#contact" onClick={() => setIsOpen(false)} className="nav-link self-start">Contact</Link>
             </div>
           </motion.div>
         )}

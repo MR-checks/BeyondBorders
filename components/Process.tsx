@@ -16,18 +16,18 @@ export default function Process() {
           {processSteps.map((step, i) => (
             <motion.div 
               key={step.id}
-              className="glass p-6 md:p-8 rounded-2xl flex gap-6 items-start cursor-pointer"
+              className="glass p-6 md:p-8 rounded-2xl flex flex-row items-center gap-6 cursor-pointer"
               whileHover={{ y: -4, boxShadow: "0 12px 40px rgb(var(--accent) / 0.28)" }}
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
             >
-              <div className="flex-shrink-0 w-12 h-12 bg-ink text-surface dark:bg-accent dark:text-white rounded-full flex items-center justify-center font-bold text-lg">
+              <div className="flex-shrink-0 w-14 h-14 bg-[#AC9350] text-white rounded-full flex items-center justify-center font-serif font-bold text-2xl shadow-[0_4px_12px_rgba(172,147,80,0.3)]">
                 {step.id}
               </div>
-              <div>
-                <h3 className="text-xl font-bold mb-2">{step.title}</h3>
+              <div className="flex-grow">
+                <h3 className="text-xl font-bold mb-1">{step.title}</h3>
                 <p className="text-ink-dim leading-relaxed">{step.description}</p>
               </div>
             </motion.div>

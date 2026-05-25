@@ -31,6 +31,8 @@
     --cta: 200 88 40;
     --cta-hover: 177 74 32;
     --wa: 37 211 102;
+    --nav-underline: #B89968;
+    --logo-gold: #A08040;
   }
   .dark {
     --bg-center: #321608;
@@ -46,6 +48,8 @@
     --accent-strong: 224 155 48;
     --cta: 200 88 40;
     --cta-hover: 224 104 47;
+    --nav-underline: #C9A77A;
+    --logo-gold: #AC9350;
   }
 
   @keyframes diffuse {
@@ -114,4 +118,39 @@
 }
 @supports not (backdrop-filter: blur(1px)){
   .glass{ background: rgb(var(--surface) / 0.92); }
+}
+
+@layer utilities {
+  .text-logo-gold {
+    color: var(--logo-gold);
+  }
+
+  .nav-link {
+    position: relative;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 2px;
+    width: 100%;
+    background: var(--nav-underline);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.28s ease;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .nav-link::after {
+      transition: none;
+      display: none;
+    }
+    .nav-link:hover::after {
+      display: block;
+      transform: scaleX(1);
+    }
+  }
+  .nav-link:hover::after {
+    transform: scaleX(1);
+  }
 }

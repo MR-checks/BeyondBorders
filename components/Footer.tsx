@@ -6,8 +6,8 @@ export default function Footer() {
     <footer className="mt-20 pt-16 pb-8 px-6 bg-gradient-to-b from-transparent to-surface/90 dark:from-[#2C1506] dark:to-[#2C1506] text-ink dark:text-[#F5EDDA]">
       <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 mb-12 border-b border-ink/10 dark:border-white/10 pb-12">
         <div className="md:col-span-2">
-          <Link href="/" className="font-serif text-2xl font-bold tracking-tight mb-4 inline-block">
-            Beyond<span className="text-accent">Borders</span>
+          <Link href="/" className="font-serif text-2xl font-bold tracking-tight mb-4 inline-block hover:opacity-80 transition-opacity">
+            Beyond<span className="text-logo-gold">Borders</span>
           </Link>
           <p className="text-ink/70 dark:text-[#F5EDDA]/70 max-w-sm italic font-serif">
             {siteConfig.description}
