@@ -39,7 +39,7 @@ export default async function RootLayout({
   const nonce = (await headers()).get('x-nonce') ?? '';
 
   return (
-    <html lang="en" suppressHydrationWarning className={`${fraunces.variable} ${manrope.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`scroll-smooth ${fraunces.variable} ${manrope.variable}`}>
       <head>
         <meta name="theme-color" content="#180A02" />
       </head>
