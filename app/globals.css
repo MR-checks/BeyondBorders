@@ -166,13 +166,8 @@
    --------------------------------------------------------------------------- */
 
 @layer base {
-  /* The header is fixed at 5rem. Without this, every in-page link drops the
-     section heading underneath it and the page looks like it scrolled too far. */
-  section[id],
-  article[id],
-  div[id] {
-    scroll-margin-top: 6.5rem;
-  }
+  /* scroll-margin-top for anchor targets is set with the safe-area tokens
+     at the end of this file, where the real header height is known. */
 
   /* One visible focus treatment everywhere, instead of the browser default
      disappearing against the parchment background. */
@@ -320,3 +315,33 @@
     .marquee-track { animation: none; }
   }
 }
+
+/* ---------------------------------------------------------------------------
+   iOS safe areas (Dynamic Island / notch / home indicator)
+
+   viewport-fit=cover in app/layout.tsx lets the page paint under the status
+   bar so the background blends instead of showing a white band. The tradeoff
+   is that fixed elements can now sit underneath the Island or the home
+   indicator, so anything pinned to an edge has to add the inset back.
+
+   env() falls back to 0px everywhere else, so desktop is untouched.
+   --------------------------------------------------------------------------- */
+
+@layer base {
+  :root {
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    /* Header is a 5rem bar sitting below whatever the Island takes. */
+    --header-h: calc(5rem + var(--safe-top));
+  }
+
+  /* Anchor targets clear the header at its real height, insets included. */
+  section[id],
+  article[id],
+  div[id] {
+    scroll-margin-top: calc(var(--header-h) + 1.5rem);
+  }
+}
+
+/* Components consume these with Tailwind arbitrary values, e.g.
+   pt-[var(--safe-top)] and bottom-[calc(1.5rem+var(--safe-bottom))]. */

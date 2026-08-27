@@ -84,7 +84,7 @@ export default function Nav() {
        y:-100, which meant the server shipped the whole navigation translated
        off-screen and it only came back once JS ran. */
     <header
-      className={`fixed top-0 w-full z-[940] transition-all duration-300 ${
+      className={`pt-[calc(var(--safe-top))] fixed top-0 w-full z-[940] transition-all duration-300 ${
         isScrolled
           ? "bg-bg/80 backdrop-blur-md shadow-[0_4px_24px_rgb(var(--ink)/0.06)]"
           : "bg-transparent"
@@ -141,7 +141,7 @@ export default function Nav() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="lg:hidden fixed inset-0 top-20 bg-black/40"
+              className="top-[var(--header-h)] lg:hidden fixed inset-x-0 bottom-0 bg-black/40"
               onClick={() => setIsOpen(false)}
             />
             <motion.div
@@ -150,7 +150,7 @@ export default function Nav() {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.22 }}
-              className="lg:hidden absolute top-20 left-0 w-full overflow-hidden bg-[#F5EDDA]/95 dark:bg-[#2E1408]/95 backdrop-blur-md shadow-lg border-t border-glass-border/10"
+              className="top-[var(--header-h)] lg:hidden absolute left-0 w-full overflow-hidden bg-[#F5EDDA]/95 dark:bg-[#2E1408]/95 backdrop-blur-md shadow-lg border-t border-glass-border/10"
             >
               <nav className="flex flex-col py-6 px-6 gap-5 font-medium text-lg">
                 {items.map((item) => (

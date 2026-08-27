@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
 import { Fraunces, Manrope } from "next/font/google";
 import "./globals.css";
@@ -51,6 +51,23 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * theme-color tints the iOS status bar behind the Dynamic Island, and
+ * viewport-fit=cover lets the page paint underneath it instead of leaving a
+ * white band. The colours are the top of the page background (--bg-center in
+ * globals.css), which is what the status bar has to blend into.
+ *
+ * These two cover the system preference. ThemeToggle rewrites the tag at
+ * runtime when someone overrides the theme by hand.
+ */
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#FDF6EA" },
+    { media: "(prefers-color-scheme: dark)", color: "#321608" },
+  ],
+  viewportFit: "cover",
+};
+
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -64,9 +81,6 @@ export default async function RootLayout({
       suppressHydrationWarning
       className={`scroll-smooth ${fraunces.variable} ${manrope.variable}`}
     >
-      <head>
-        <meta name="theme-color" content="#180A02" />
-      </head>
       <body className="antialiased font-sans min-h-screen flex flex-col relative z-0">
         <a
           href="#main"

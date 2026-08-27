@@ -10,7 +10,7 @@ import { siteConfig } from "@/lib/siteConfig";
  */
 export default function WhatsAppButton() {
   return (
-    <div className="fixed bottom-6 right-6 z-[900]">
+    <div className="bottom-[calc(1.5rem+var(--safe-bottom))] fixed right-6 z-[900]">
       <a
         href={siteConfig.contact.whatsappLink}
         target="_blank"

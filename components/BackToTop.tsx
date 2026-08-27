@@ -26,7 +26,7 @@ export default function BackToTop() {
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           aria-label="Back to top"
           /* Sits above the WhatsApp button, which owns the bottom right corner. */
-          className="glass fixed bottom-24 right-6 z-[890] grid h-11 w-11 place-items-center rounded-full text-ink transition-colors hover:text-accent md:bottom-6 md:right-[11.5rem]"
+          className="glass bottom-[calc(6rem+var(--safe-bottom))] md:bottom-[calc(1.5rem+var(--safe-bottom))] fixed right-6 z-[890] grid h-11 w-11 place-items-center rounded-full text-ink transition-colors hover:text-accent md:right-[11.5rem]"
         >
           <ArrowUp size={18} />
         </motion.button>

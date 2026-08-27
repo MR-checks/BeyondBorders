@@ -23,7 +23,7 @@ export default function TripTray() {
           exit={{ y: 90, opacity: 0 }}
           transition={{ type: "spring", stiffness: 340, damping: 34 }}
           /* Stops short of the right edge so it never sits under the WhatsApp button. */
-          className="fixed bottom-3 left-3 right-[5.75rem] z-[880] sm:left-1/2 sm:right-auto sm:w-[min(44rem,calc(100vw-10rem))] sm:-translate-x-1/2"
+          className="bottom-[calc(0.75rem+var(--safe-bottom))] fixed left-3 right-[5.75rem] z-[880] sm:left-1/2 sm:right-auto sm:w-[min(44rem,calc(100vw-10rem))] sm:-translate-x-1/2"
         >
           <div className="glass flex items-center gap-3 rounded-2xl px-3 py-2.5 sm:px-4">
             <div className="min-w-0 flex-1">
