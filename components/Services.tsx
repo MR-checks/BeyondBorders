@@ -1,35 +1,37 @@
-"use client";
 import { services } from "@/content/services";
-import { motion } from "framer-motion";
+import Reveal from "./Reveal";
 
 export default function Services() {
   return (
     <section id="services" className="py-24 px-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-serif mb-4 relative inline-block">
-            <span className="block text-sm font-sans text-accent tracking-widest uppercase mb-2">What We Offer</span>
-            Our Services
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-16 text-center">
+          <h2 className="relative mb-4 inline-block font-serif text-4xl md:text-5xl">
+            <span className="mb-2 block font-sans text-sm uppercase tracking-widest text-accent">
+              What we do
+            </span>
+            Everything between the idea and the plane
           </h2>
-          <p className="text-lg text-ink-dim max-w-2xl mx-auto">Comprehensive support for your global journey.</p>
+          <p className="mx-auto max-w-2xl text-lg text-ink-dim">
+            You bring the goal. We deal with the forms, the embassies, the
+            deadlines and the bits nobody warns you about.
+          </p>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service, i) => (
-            <motion.div 
+            <Reveal
               key={service.id}
-              className="glass p-8 rounded-3xl group cursor-pointer"
-              whileHover={{ y: -8, boxShadow: "0 12px 40px rgb(var(--accent) / 0.28)" }}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: i * 0.1 }}
+              step={i}
+              as="article"
+              className="glass group rounded-3xl p-8 transition-[transform,box-shadow] duration-300 hover:-translate-y-2 hover:shadow-[0_16px_44px_rgb(var(--accent)/0.25)] motion-reduce:hover:translate-y-0"
             >
-              <div className="w-14 h-14 rounded-full border-2 border-accent/20 flex items-center justify-center mb-6 text-accent group-hover:bg-accent group-hover:text-white transition-colors">
+              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full border-2 border-accent/20 text-accent transition-colors duration-300 group-hover:bg-accent group-hover:text-white">
                 <service.icon size={24} />
               </div>
-              <h3 className="text-xl font-bold mb-3">{service.title}</h3>
-              <p className="text-ink-dim leading-relaxed">{service.description}</p>
-            </motion.div>
+              <h3 className="mb-3 text-xl font-bold">{service.title}</h3>
+              <p className="leading-relaxed text-ink-dim">{service.description}</p>
+            </Reveal>
           ))}
         </div>
       </div>

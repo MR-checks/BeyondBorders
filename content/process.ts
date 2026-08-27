@@ -7,12 +7,12 @@ export const processSteps = [
   {
     id: 2,
     title: "Personalized Countries, Opportunities and Institutions List",
-    description: "We shortlist best-fit countries, services, and institutions for you — just say the goal."
+    description: "We shortlist best-fit countries, services, and institutions for you. Just say the goal."
   },
   {
     id: 3,
     title: "Application & Documentation",
-    description: "We handle the entire application and documentation process: from crafting a strong Statement of Purpose to organizing your documents and handling submissions — smooth, stress-free, and transparent."
+    description: "We handle the entire application and documentation process: from crafting a strong Statement of Purpose to organizing your documents and handling submissions. Smooth, stress free, and transparent."
   },
   {
     id: 4,
