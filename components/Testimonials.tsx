@@ -1,11 +1,15 @@
 import { testimonials, type Testimonial } from "@/content/testimonials";
 
 /**
- * Two rows sliding in opposite directions. Each track holds the list twice, so
- * the -50% keyframe lands on an identical frame and the loop has no seam.
+ * Only quotes marked `verified: true` are rendered.
  *
- * All CSS: no JS, no rAF, nothing to get stuck. Hovering or tabbing into a row
- * pauses it, and prefers-reduced-motion turns it into a plain scroll rail.
+ * The placeholder rows in content/testimonials.ts exist so the marquee can be
+ * designed against a realistic number of cards. They are invented quotes with
+ * invented names, and publishing those on a live site means showing fabricated
+ * customer reviews to real customers, so they stay out of the DOM until someone
+ * flips the flag on a quote they actually received.
+ *
+ * To publish one: set `verified: true` on that entry. Nothing else to change.
  */
 function Card({ t }: { t: Testimonial }) {
   return (
@@ -40,6 +44,8 @@ function Row({
   duration: string;
   reverse?: boolean;
 }) {
+  // The track holds the list twice, so the -50% keyframe lands on an identical
+  // frame and the loop has no seam.
   return (
     <div className="marquee-viewport no-scrollbar rail-fade overflow-x-auto md:overflow-hidden">
       <div
@@ -58,9 +64,14 @@ function Row({
 }
 
 export default function Testimonials() {
-  const half = Math.ceil(testimonials.length / 2);
-  const top = testimonials.slice(0, half);
-  const bottom = testimonials.slice(half);
+  const published = testimonials.filter((t) => t.verified);
+
+  // Nothing to show is better than padding the section out with invented quotes.
+  if (published.length === 0) return null;
+
+  // Two opposing rows need enough cards to look deliberate rather than sparse.
+  const twoRows = published.length >= 6;
+  const half = Math.ceil(published.length / 2);
 
   return (
     <section id="testimonials" className="overflow-hidden bg-surface py-24">
@@ -75,8 +86,14 @@ export default function Testimonials() {
         </p>
       </div>
 
-      <Row items={top} duration="65s" />
-      <Row items={bottom} duration="80s" reverse />
+      {twoRows ? (
+        <>
+          <Row items={published.slice(0, half)} duration="65s" />
+          <Row items={published.slice(half)} duration="80s" reverse />
+        </>
+      ) : (
+        <Row items={published} duration="55s" />
+      )}
     </section>
   );
 }
