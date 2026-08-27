@@ -97,7 +97,18 @@
 
   body {
     @apply text-ink;
-    background: radial-gradient(ellipse 150% 150% at 50% 0%, var(--bg-center) 0%, var(--bg-mid) 45%, var(--bg-edge) 100%);
+    /* background-color FIRST, then the gradient as an IMAGE. Using the
+       `background` shorthand for the gradient resets background-color to
+       transparent, which is what left the browser with nothing solid to tint
+       the iOS status bar with. Minaret and mariscapharmacy both blend because
+       their body carries a real background-color; this is the same thing. */
+    background-color: var(--bg-center);
+    background-image: radial-gradient(
+      ellipse 150% 150% at 50% 0%,
+      var(--bg-center) 0%,
+      var(--bg-mid) 45%,
+      var(--bg-edge) 100%
+    );
     background-attachment: fixed;
     background-size: 200% 200%;
     animation: diffuse 35s ease-in-out infinite alternate;

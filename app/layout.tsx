@@ -52,20 +52,22 @@ export const metadata: Metadata = {
 };
 
 /**
- * theme-color tints the iOS status bar behind the Dynamic Island, and
- * viewport-fit=cover lets the page paint underneath it instead of leaving a
- * white band. The colours are the top of the page background (--bg-center in
- * globals.css), which is what the status bar has to blend into.
+ * Colours match --bg-center in globals.css, the top of the page background,
+ * so the browser chrome continues the page rather than sitting against it.
  *
- * These two cover the system preference. ThemeToggle rewrites the tag at
- * runtime when someone overrides the theme by hand.
+ * Deliberately no viewport-fit: cover. Covering the safe area stops the browser
+ * tinting the status bar and makes the page responsible for painting it, which
+ * is the fragile path. Minaret and mariscapharmacy both leave it at the default
+ * and blend correctly.
+ *
+ * These two entries cover the system preference. ThemeToggle rewrites the tag
+ * at runtime when someone overrides the theme by hand.
  */
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#FDF6EA" },
     { media: "(prefers-color-scheme: dark)", color: "#321608" },
   ],
-  viewportFit: "cover",
 };
 
 export default async function RootLayout({
