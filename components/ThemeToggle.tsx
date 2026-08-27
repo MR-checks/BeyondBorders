@@ -39,8 +39,11 @@ export default function ThemeToggle() {
 
   useEffect(() => {
     if (!mounted) return;
-    // next-themes writes the class in its own effect; wait a frame so the
-    // custom property we read reflects the theme that just landed.
+    // Once now, and once after a frame. next-themes writes the class in its own
+    // effect and the ordering is not guaranteed, so the second pass catches the
+    // value that actually landed. The first pass matters because a backgrounded
+    // tab never runs the frame callback at all.
+    syncStatusBarColor();
     const id = requestAnimationFrame(syncStatusBarColor);
     return () => cancelAnimationFrame(id);
   }, [resolvedTheme, mounted]);

@@ -7,8 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: "Your trusted partner for international education and travel.",
     start_url: "/",
     display: "standalone",
-    background_color: "#F5EDDA",
-    theme_color: "#2C1506",
+    background_color: "#FDF6EA",
+    theme_color: "#FDF6EA",
     icons: [
       {
         src: "/icon-192.png",

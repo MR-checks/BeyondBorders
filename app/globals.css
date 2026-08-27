@@ -85,6 +85,16 @@
     100% { transform: translate(0vw, 30vh) scale(1); }
   }
 
+  /* The page background is a gradient, which is a background-IMAGE. A browser
+     cannot tint the iOS status bar or the rubber-band overscroll area with an
+     image: it needs a background-COLOR, and with none set it falls back to its
+     own canvas default, white on a light system and black on a dark one. That
+     is the band above the page on iPhone. Giving the root a solid colour that
+     matches the top of the gradient gives it something real to use. */
+  html {
+    background-color: var(--bg-center);
+  }
+
   body {
     @apply text-ink;
     background: radial-gradient(ellipse 150% 150% at 50% 0%, var(--bg-center) 0%, var(--bg-mid) 45%, var(--bg-edge) 100%);
