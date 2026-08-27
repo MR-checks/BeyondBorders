@@ -1,38 +1,40 @@
-"use client";
 import { processSteps } from "@/content/process";
-import { motion } from "framer-motion";
+import Reveal from "./Reveal";
 
 export default function Process() {
   return (
     <section id="process" className="py-24 px-6">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-serif mb-4 relative inline-block">
-            <span className="block text-sm font-sans text-accent tracking-widest uppercase mb-2">Simple Steps</span>
-            How It Works
+      <div className="mx-auto max-w-4xl">
+        <div className="mb-16 text-center">
+          <h2 className="relative mb-4 inline-block font-serif text-4xl md:text-5xl">
+            <span className="mb-2 block font-sans text-sm uppercase tracking-widest text-accent">
+              How it works
+            </span>
+            Four steps, and we do most of them
           </h2>
         </div>
-        <div className="space-y-6">
+
+        <ol className="space-y-6">
           {processSteps.map((step, i) => (
-            <motion.div 
+            <Reveal
               key={step.id}
-              className="glass p-6 md:p-8 rounded-2xl flex flex-row items-center gap-6 cursor-pointer"
-              whileHover={{ y: -4, boxShadow: "0 12px 40px rgb(var(--accent) / 0.28)" }}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
+              step={i}
+              as="li"
+              className="glass flex flex-row items-center gap-6 rounded-2xl p-6 transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_14px_40px_rgb(var(--accent)/0.25)] motion-reduce:hover:translate-y-0 md:p-8"
             >
-              <div className="flex-shrink-0 w-14 h-14 bg-[#2C1506] text-[#F5EDDA] dark:bg-[#3E1E09] dark:text-[#C8872A] border border-transparent dark:border-[rgba(200,135,42,0.4)] rounded-full flex items-center justify-center font-serif font-bold text-2xl shadow-md">
+              <span
+                aria-hidden
+                className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full border border-transparent bg-[#2C1506] font-serif text-2xl font-bold text-[#F5EDDA] shadow-md dark:border-[rgba(200,135,42,0.4)] dark:bg-[#3E1E09] dark:text-[#C8872A]"
+              >
                 {step.id}
-              </div>
+              </span>
               <div className="flex-grow">
-                <h3 className="text-xl font-bold mb-1">{step.title}</h3>
-                <p className="text-ink-dim leading-relaxed">{step.description}</p>
+                <h3 className="mb-1 text-xl font-bold">{step.title}</h3>
+                <p className="leading-relaxed text-ink-dim">{step.description}</p>
               </div>
-            </motion.div>
+            </Reveal>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   );

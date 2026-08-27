@@ -1,45 +1,53 @@
-"use client";
-import { motion } from "framer-motion";
 import Link from "next/link";
 
+/**
+ * No client JS. The headline used to start at opacity 0 and wait for Framer
+ * Motion, which meant the first thing anyone sees on the site could fail to
+ * appear at all. The entrance is CSS now and the copy is in the HTML.
+ */
 export default function Hero() {
   return (
-    <section className="relative pt-32 pb-20 px-6 min-h-[80vh] flex items-center justify-center overflow-hidden">
-      {/* Decorative dashed path (SVG motif) */}
-      <svg className="absolute inset-0 w-full h-full opacity-10 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,200 Q400,100 800,300 T1600,200" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="8 8" className="text-accent"/>
+    <section className="relative flex min-h-[80vh] items-center justify-center overflow-hidden px-6 pb-20 pt-32">
+      <svg
+        className="pointer-events-none absolute inset-0 h-full w-full opacity-10"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <path
+          d="M0,200 Q400,100 800,300 T1600,200"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeDasharray="8 8"
+          className="text-accent"
+        />
       </svg>
-      
-      <div className="max-w-4xl mx-auto text-center z-10">
-        <motion.h1 
-          className="text-[clamp(2.4rem,5vw,4rem)] font-serif leading-tight mb-6"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          Your Journey to Global Travel & Opportunities Starts Here
-        </motion.h1>
-        <motion.p 
-          className="text-lg md:text-xl text-ink-dim mb-10 max-w-2xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          From Study and Work to Tourist and Medical visas, we guide you through the entire travel process: simple, clear, and stress-free.
-        </motion.p>
-        <motion.div 
-          className="flex flex-col sm:flex-row gap-4 justify-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          <Link href="#contact" className="bg-cta text-[#130802] dark:text-white hover:bg-cta-hover px-8 py-4 rounded-xl font-bold transition-all hover:-translate-y-1 hover:shadow-[0_8px_24px_rgb(var(--cta)/0.35)]">
-            Get Free Consultation
+
+      <div className="z-10 mx-auto max-w-4xl text-center">
+        <h1 className="anim-rise mb-6 font-serif text-[clamp(2.4rem,5vw,4rem)] leading-tight">
+          Some people wait years for the trip. You could go this one.
+        </h1>
+
+        <p className="anim-rise anim-d2 mx-auto mb-10 max-w-2xl text-lg text-ink-dim md:text-xl">
+          Study, work, a holiday, a hospital appointment abroad. Whatever the
+          reason you need to cross a border, we have taken about six thousand
+          people through it, and we have not lost a visa yet.
+        </p>
+
+        <div className="anim-rise anim-d3 flex flex-col justify-center gap-4 sm:flex-row">
+          <Link
+            href="#contact"
+            className="rounded-xl bg-cta px-8 py-4 font-bold text-white transition-all hover:-translate-y-1 hover:bg-cta-hover hover:shadow-[0_8px_24px_rgb(var(--cta)/0.35)] motion-reduce:hover:translate-y-0"
+          >
+            Talk to us, free
           </Link>
-          <Link href="#services" className="glass px-8 py-4 rounded-xl font-medium transition-all hover:-translate-y-1 hover:shadow-[0_12px_40px_rgb(var(--accent)/0.2)]">
-            Explore Services
+          <Link
+            href="/turkey"
+            className="glass px-8 py-4 font-medium transition-all hover:-translate-y-1 hover:shadow-[0_12px_40px_rgb(var(--accent)/0.2)] motion-reduce:hover:translate-y-0"
+          >
+            See our Turkey trips
           </Link>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
