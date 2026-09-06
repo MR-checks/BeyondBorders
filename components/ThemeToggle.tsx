@@ -7,14 +7,19 @@ import { Moon, Sun } from "lucide-react";
 /**
  * Keeps the iOS status bar tinted to match the top of the page.
  *
- * app/layout.tsx emits two media-scoped theme-color tags for the system
- * preference. A browser uses the FIRST theme-color whose media matches, so a
- * manual override has to be an unscoped tag placed ahead of those rather than
- * an edit to one of them: editing the light-media tag would leave it applying a
- * dark colour on a light system.
+ * Safari reads theme-color once and latches onto it. Editing the `content`
+ * attribute of a tag it has already seen does not make it look again, which is
+ * why switching theme only took effect in a freshly opened tab. Replacing the
+ * element does force a re-read, so this removes every theme-color tag and
+ * inserts one new one on each change rather than mutating in place.
  *
- * The colour is read from --bg-center, the top stop of the page background, so
- * it cannot drift if the palette changes.
+ * Clearing them all also removes the ambiguity of the two media-scoped tags
+ * app/layout.tsx renders for the system preference: those give the correct
+ * colour before JS runs, and from the first sync onwards a single unscoped tag
+ * carries the theme the user actually has.
+ *
+ * The colour comes from --bg-center, the top stop of the page background, so it
+ * cannot drift if the palette changes.
  */
 function syncStatusBarColor() {
   const color = getComputedStyle(document.documentElement)
@@ -22,15 +27,16 @@ function syncStatusBarColor() {
     .trim();
   if (!color) return;
 
-  let meta = document.querySelector<HTMLMetaElement>("meta[data-theme-color-override]");
-  if (!meta) {
-    meta = document.createElement("meta");
-    meta.name = "theme-color";
-    meta.setAttribute("data-theme-color-override", "");
-    // First in head, so it wins over the media-scoped tags Next renders.
-    document.head.prepend(meta);
-  }
+  const existing = document.querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]');
+  // Nothing to do if a single tag already carries this exact colour: pointless
+  // DOM churn on every render, and Safari can flicker when the tag is replaced.
+  if (existing.length === 1 && existing[0].content === color) return;
+
+  existing.forEach((m) => m.remove());
+  const meta = document.createElement("meta");
+  meta.name = "theme-color";
   meta.content = color;
+  document.head.appendChild(meta);
 }
 
 export default function ThemeToggle() {
